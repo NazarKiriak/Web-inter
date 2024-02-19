@@ -1,39 +1,63 @@
 using System;
-using System.IO;
-using System.Net.Http;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 class Program
 {
-	static async Task Main()
+	static void Main()
 	{
-		string filePath = "example.txt";
-		File.WriteAllText(filePath, "This is an example of text.");
-		string content = File.ReadAllText(filePath);
-		Console.WriteLine($"File content {filePath}:\n{content}");
-
-		using (HttpClient client = new HttpClient())
-		{
-			HttpResponseMessage response = await client.GetAsync("https://moodle3.chmnu.edu.ua/");
-			string responseContent = await response.Content.ReadAsStringAsync();
-			Console.WriteLine($"HTTP response from moodle3.chmnu.edu.ua:\n{responseContent}");
-		}
-
-		int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-		var evenNumbers = numbers.Where(n => n % 2 == 0);
-		Console.WriteLine("Even numbers: " + string.Join(", ", evenNumbers));
-
-		await Task.Delay(2000);
-		Console.WriteLine("The pause is over. Continue executing the program.");
-
-		string xmlString = "<book><title>Sample Book</title></book>";
-		XDocument xmlDoc = XDocument.Parse(xmlString);
-		string title = xmlDoc.Root?.Element("title")?.Value;
-		Console.WriteLine($"Book title with XML: {title}");
-
+		// Виклики методів для демонстрації
+		RunThreadDemo();
+		RunAsyncAwaitDemo();
 
 		Console.ReadLine();
+	}
+
+	// Перший метод - демонстрація класу Thread
+	static void RunThreadDemo()
+	{
+		Console.WriteLine("Початок роботи з потоками.");
+
+		// Створення та запуск нового потоку
+		Thread thread = new Thread(ThreadMethod);
+		thread.Start();
+
+		// Очікування завершення роботи потоку
+		thread.Join();
+
+		Console.WriteLine("Завершення роботи з потоками.");
+		Console.WriteLine();
+	}
+
+	// Метод для виконання у потоці
+	static void ThreadMethod()
+	{
+		Console.WriteLine("Початок роботи у потоці.");
+		Thread.Sleep(2000); // Імітація роботи
+		Console.WriteLine("Завершення роботи у потоці.");
+	}
+
+	// Другий метод - демонстрація Async - Await
+	static void RunAsyncAwaitDemo()
+	{
+		Console.WriteLine("Початок роботи з Async - Await.");
+
+		// Виклик асинхронного методу
+		Task task = AwaitMethod();
+		task.Wait(); // Очікування завершення асинхронного методу
+
+		Console.WriteLine("Завершення роботи з Async - Await.");
+		Console.WriteLine();
+	}
+
+	// Асинхронний метод
+	static async Task AwaitMethod()
+	{
+		Console.WriteLine("Початок асинхронного методу.");
+
+		// Асинхронне очікування 3 секунди
+		await Task.Delay(3000);
+
+		Console.WriteLine("Завершення асинхронного методу.");
 	}
 }
