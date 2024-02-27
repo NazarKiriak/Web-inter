@@ -1,63 +1,76 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Reflection;
 
-class Program
+public class MyClass
 {
+
+	private int _privateField;
+	public string PublicField;
+	internal double InternalField;
+	protected bool ProtectedField;
+	protected internal decimal ProtectedInternalField;
+
+	public MyClass(int privateField, string publicField, double internalField,
+				   bool protectedField, decimal protectedInternalField)
+	{
+		_privateField = privateField;
+		PublicField = publicField;
+		InternalField = internalField;
+		ProtectedField = protectedField;
+		ProtectedInternalField = protectedInternalField;
+	}
+
+	public void Method1()
+	{
+		Console.WriteLine("Method1");
+	}
+
+	public int Method2(int value)
+	{
+		Console.WriteLine($"Method2 with {value}");
+		return value * 2;
+	}
+
+	public string Method3(string message)
+	{
+		Console.WriteLine($"Method3 with argument {message}");
+		return message.ToUpper();
+	}
+
 	static void Main()
 	{
-		//Calling methods for demonstration
-		RunThreadDemo();
-		RunAsyncAwaitDemo();
+		Type myType = typeof(MyClass);
+		TypeInfo typeInfo = myType.GetTypeInfo();
+		Console.WriteLine("///2");
+		Console.WriteLine($"Type: {myType}");
+		Console.WriteLine($"Type.FullName: {typeInfo.FullName}");
+
+		MemberInfo[] members = myType.GetMembers();
+		Console.WriteLine("///3");
+
+		Console.WriteLine("\nMembers:");
+		foreach (MemberInfo member in members)
+		{
+			Console.WriteLine($"{member.MemberType}: {member.Name}");
+		}
+
+		Console.WriteLine("///4");
+
+		FieldInfo[] fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
+		Console.WriteLine("\nFields:");
+		foreach (FieldInfo field in fields)
+		{
+			Console.WriteLine($"{field.FieldType} {field.Name}");
+		}
+
+		Console.WriteLine("///5 ");
+
+		MethodInfo method = myType.GetMethod("Method2");
+		Console.WriteLine($"\nMethod: {method.Name}");
+		object instance = Activator.CreateInstance(myType, 10, "test", 3.14, true, 5.67m);
+		object result = method.Invoke(instance, new object[] { 5 });
+		Console.WriteLine($"Result: {result}");
 
 		Console.ReadLine();
-	}
-
-	//The first method is a demonstration of the Thread class 
-	static void RunThreadDemo()
-	{
-		Console.WriteLine("Getting started with streams");
-
-		//Creating and launching a new thread
-		Thread thread = new Thread(ThreadMethod);
-		thread.Start();
-
-		//Waiting for the thread to complete 
-		thread.Join();
-
-		Console.WriteLine("Completion of work with streams");
-		Console.WriteLine();
-	}
-
-	//Method to execute in a thread
-	static void ThreadMethod()
-	{
-		Console.WriteLine("Start working in a stream");
-		Thread.Sleep(2000);
-		Console.WriteLine("Completing work in progress");
-	}
-
-	//The second method is the Async - Await demonstration 
-	static void RunAsyncAwaitDemo()
-	{
-		Console.WriteLine("Getting started with Async - Await");
-
-		//Calling an asynchronous method 
-		Task task = AwaitMethod();
-		task.Wait();
-
-		Console.WriteLine("Completing work with Async - Await");
-		Console.WriteLine();
-	}
-
-	//Asynchronous method
-	static async Task AwaitMethod()
-	{
-		Console.WriteLine("The beginning of the asynchronous method");
-
-		//Asynchronous waiting 3 seconds
-		await Task.Delay(3000);
-
-		Console.WriteLine("Ending an asynchronous method");
 	}
 }
