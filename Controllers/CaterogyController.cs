@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using RESTwebAPI.Models;
 using RESTwebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RESTwebAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
