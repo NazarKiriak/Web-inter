@@ -12,16 +12,17 @@ namespace RESTwebAPI.Services
         {
             _products = new List<Product>
             {
-                new Product { Id = 1, Name = "Холодильник LG 536", Price = 35000 },
-                new Product { Id = 2, Name = "Ноутбук Aser Aspeire 5", Price = 17890 },
-                new Product { Id = 3, Name = "Ігровий монітор Samsung A535", Price = 15000 },
-                new Product { Id = 4, Name = "Чохол iPhone 14 Pro", Price = 20 },
-                new Product { Id = 5, Name = "Комп'ютер MSI AD4536", Price = 55000 },
-                new Product { Id = 6, Name = "Навушники Logitech 43", Price = 3000 },
-                new Product { Id = 7, Name = "Колонка JBL 4", Price = 4000 },
-                new Product { Id = 8, Name = "Флешка Samsung 512Gb", Price = 500 },
-                new Product { Id = 9, Name = "Квадракоптер DJI Mavic 3 Pro", Price = 60000 },
-                new Product { Id = 10, Name = "Ліцензія Windows 10 Pro", Price = 4000 },
+                new Product { Id = 1, Name = "Смартфон Samsung Galaxy S21", Price = 5 },
+                new Product { Id = 2, Name = "Ноутбук HP Pavilion 15", Price = 10 },
+                new Product { Id = 3, Name = "Телевізор LG OLED55CX", Price = 15 },
+                new Product { Id = 4, Name = "Пилосос Xiaomi Mi Robot Vacuum", Price = 20 },
+                new Product { Id = 5, Name = "Ігрова консоль Sony PlayStation 5", Price = 25 },
+                new Product { Id = 6, Name = "Холодильник Bosch KGN39VL35", Price = 30 },
+                new Product { Id = 7, Name = "Спортивний годинник Garmin Forerunner 945", Price = 40 },
+                new Product { Id = 8, Name = "Книга \"Майстер та Маргарита\" Михаїла Булгакова", Price = 50 },
+                new Product { Id = 9, Name = "Мультиварка REDMOND SkyCooker", Price = 60 },
+                new Product { Id = 10, Name = "Блендер Philips Daily Collection", Price = 100 },
+
             };
         }
         public async Task<ResponseModel<Product>> AddProductAsync(Product product)
