@@ -12,16 +12,16 @@ namespace RESTwebAPI.Services
         {
             _categorys = new List<Category>
             {
-                new Category { CategoryId = 1, CategoryName = "Побутова техніка"},
-                new Category { CategoryId = 2, CategoryName = "Ноутбуки"},
-                new Category { CategoryId = 3, CategoryName = "Електроніка для геймерів"},
-                new Category { CategoryId = 4, CategoryName = "Аксесуари"},
-                new Category { CategoryId = 5, CategoryName = "Комп'ютери"},
-                new Category { CategoryId = 6, CategoryName = "Навушники"},
-                new Category { CategoryId = 7, CategoryName = "Колонки"},
-                new Category { CategoryId = 8, CategoryName = "Флешки"},
-                new Category { CategoryId = 9, CategoryName = "Квадракоптери"},
-                new Category { CategoryId = 10, CategoryName = "Лецензії для техніки"},
+                new Category { CategoryId = 1, CategoryName = "Електроніка"},
+                new Category { CategoryId = 2, CategoryName = "Комп'ютери та ноутбуки"},
+                new Category { CategoryId = 3, CategoryName = "Побутова техніка"},
+                new Category { CategoryId = 4, CategoryName = "Смартфони та аксесуари"},
+                new Category { CategoryId = 5, CategoryName = "Телевізори та аудіотехніка"},
+                new Category { CategoryId = 6, CategoryName = "Ігрові консолі та відеоігри"},
+                new Category { CategoryId = 7, CategoryName = "Побутова хімія та прибирання"},
+                new Category { CategoryId = 8, CategoryName = "Меблі та предмети декору"},
+                new Category { CategoryId = 9, CategoryName = "Спортивні товари та активний відпочинок"},
+                new Category { CategoryId = 10, CategoryName = "Книги та навчальні матеріали"},
 
             };
         }

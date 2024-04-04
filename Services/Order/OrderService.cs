@@ -10,16 +10,16 @@ namespace RESTwebAPI.Services
         {
             _orders = new List<Order>
             {
-                new Product { Id = 1, Name = "Холодильник LG", Price = 35000 },
-                new Product { Id = 2, Name = "Ноутбук Aser Aspeire 5", Price = 17890 },
-                new Product { Id = 3, Name = "Ігровий монітор Samsung A535", Price = 15000 },
-                new Product { Id = 4, Name = "Чохол iPhone 14 Pro", Price = 20 },
-                new Product { Id = 5, Name = "Комп'ютер MSI AD4536", Price = 55000 },
-                new Product { Id = 6, Name = "Навушники Logitech 43", Price = 3000 },
-                new Product { Id = 7, Name = "Колонка JBL 4", Price = 4000 },
-                new Product { Id = 8, Name = "Флешка Samsung 512Gb", Price = 500 },
-                new Product { Id = 9, Name = "Квадракоптер DJI Mavic 3 Pro", Price = 60000 },
-                new Product { Id = 10, Name = "Ліцензія Windows 10 Pro", Price = 4000 },
+                new Order { OrderId = 1, OrderName = "Смартфон Samsung Galaxy S21", TotalAmount = 50 },
+                new Order { OrderId = 2, OrderName = "Ноутбук HP Pavilion 15", TotalAmount = 100 },
+                new Order { OrderId = 3, OrderName = "Телевізор LG OLED55CX", TotalAmount = 150 },
+                new Order { OrderId = 4, OrderName = "Пилосос Xiaomi Mi Robot Vacuum", TotalAmount = 200 },
+                new Order { OrderId = 5, OrderName = "Ігрова консоль Sony PlayStation 5", TotalAmount = 250 },
+                new Order { OrderId = 6, OrderName = "Холодильник Bosch KGN39VL35", TotalAmount = 300 },
+                new Order { OrderId = 7, OrderName = "Спортивний годинник Garmin Forerunner 945", TotalAmount = 400 },
+                new Order { OrderId = 8, OrderName = "Книга \"Майстер та Маргарита\" Михаїла Булгакова", TotalAmount = 500 },
+                new Order { OrderId = 9, OrderName = "Мультиварка REDMOND SkyCooker", TotalAmount = 600 },
+                new Order { OrderId = 10, OrderName = "Блендер Philips Daily Collection", TotalAmount = 1000 },
             };
         }
         public async Task<ResponseModel<Order>> AddOrderAsync(Order order)
