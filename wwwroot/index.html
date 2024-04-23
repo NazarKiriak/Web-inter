@@ -1,0 +1,55 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@latest/dist/browser/signalr.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Currency Tracker</h1>
+    <div class="divList">
+        <div id="currencyList" class="currencyList"></div>
+    </div>
+    <script>
+        var connection = new signalR.HubConnectionBuilder()
+            .withUrl("/currencyhub")
+            .build();
+
+        connection.start().then(function () {
+            console.log("Connected to SignalR hub");
+            // Отримати курси валют після підключення
+            getCurrencyRates();
+        }).catch(function (err) {
+            console.error(err.toString());
+        });
+
+        function getCurrencyRates() {
+            connection.invoke("GetCurrencyRates")
+                .catch(function (err) {
+                    console.error(err.toString());
+                });
+        }
+        
+        connection.on("ReceiveCurrencyRates", function (currencyRates) {
+            console.log("Received currency rates:", currencyRates);
+
+            var currencyList = document.getElementById("currencyList");
+            currencyList.innerHTML = '';
+
+            var rates = JSON.parse(currencyRates);
+            for (const currency in rates) {
+                if (rates.hasOwnProperty(currency)) {
+                    const rate = rates[currency];
+                    var listItem = document.createElement("li");
+                    listItem.textContent = `${currency}: ${rate.toFixed(9)}`;
+                    currencyList.appendChild(listItem);
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
