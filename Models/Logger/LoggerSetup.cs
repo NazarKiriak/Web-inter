@@ -15,10 +15,10 @@ namespace RESTwebAPI.Models
             .WriteTo.Seq("http://localhost:7021")
             .CreateLogger();
             
-            Log.Information("Hello!");
+            Log.Information("Hello, Serilog!");
             Log.Warning("Something unexpected happened");
             Log.Fatal("The application encountered a fatal error and must exit");
-         
+            
             var user = new User { FirstName = "John", LastName = "Jonson" };
             Log.Information("User {@User} logged in at {LoginTime}", user, DateTime.Now);
 
