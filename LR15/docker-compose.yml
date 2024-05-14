@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  webapi:
+    build: .
+    container_name: Lr15
+    networks:
+      - app-network
+    ports:
+      - '80:80'
+      - '443:443'
+    restart: always
+
+  db:
+    image: mysql
+    container_name: mysql_db
+    environment:
+      MYSQL_DATABASE: testDB
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_PASSWORD: null
+    networks:
+      - app-network
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    restart: always
+
+networks:
+  app-network:
+    driver: bridge
